@@ -1,4 +1,5 @@
 require('./bootstrap');
+require('jquery');
 
 import Alpine from 'alpinejs';
 

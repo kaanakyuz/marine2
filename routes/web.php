@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\admin\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,12 +14,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('master');
-});
-Route::get('/front', function () {
     return view('front.home');
-})->name('home');
+})->name('anasayfa');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+Route::get('/iletisim' , function () {
+    return view('front.contact') ;
+})->name('iletisim');
+
+
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/panel', function () {
     return view('dashboard');
 })->name('dashboard');
+
+
+Route::group(['middleware' => ['auth' , 'isAdmin'] ,'prefix' => 'admin'],function (){
+    Route::get('kategoriler/{id}' , [CategoryController::class , 'destroy'])->name('kategoriler.destroy');
+    Route::resource('kategoriler', CategoryController::class);
+
+});
+
+

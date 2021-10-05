@@ -1,9 +1,9 @@
-<?php
+@extends('front.layouts.master')
+ @section('content')
+  <div>
 
-    @include ('front.header');
-    @include ('front.footer');
+      sasdsd
+  </div>
 
+ @endsection
 
-
-?>
-ertret
